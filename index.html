@@ -7,6 +7,12 @@
     <script type="text/javascript" src="./main.js"></script>
   </head>
   <body>
-    {{"hello " + "world"}}
+    <div ng-controller="firstCtrl">
+      {{hello}}
+      {{getBookmarks()}}
+      <button ng-click='setHello("Hello")'>Hello</button>
+      <button ng-click='setHello("Bye")'>Bye</button>
+      {{myFactory.hello()}}
+    </div>
   </body>
 </html>
