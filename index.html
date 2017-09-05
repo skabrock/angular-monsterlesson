@@ -7,6 +7,13 @@
     <script type="text/javascript" src="./main.js"></script>
   </head>
   <body>
-    {{"hello " + "world"}}
+    <foo-bar></foo-bar>
+
+    <script type="text/ng-template" id="bookmarks.html">
+      <div ng-repeat="bookmark in bookmarks">
+        {{bookmark.name}}
+      </div>
+      <div>Hello from template url</div>
+    </script>
   </body>
 </html>

@@ -1,1 +1,20 @@
 var app = angular.module('app', []);
+
+app.directive('fooBar', function () {
+  var bookmarks = [
+    {
+      id: 1,
+      name: 'EmberJS'
+    }, {
+      id: 2,
+      name: 'AngularJS'
+    }
+  ]
+  return {
+    restrict: 'E',
+    templateUrl: 'bookmarks.html',
+    link: function (scope, element, attrs) {
+      scope.bookmarks = bookmarks;
+    }
+  }
+})
