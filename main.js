@@ -1,26 +1,25 @@
 var app = angular.module('app', []);
 
 app.controller('mainCtrl', function($scope) {
-  $scope.money1 = "1.22$";
-  $scope.money2 = "$2.55";
-  $scope.money3 = "4.33";
+  $scope.posts = [
+    {
+      name: 'This is post about cats'
+    }, {
+      name: 'This is post about dogs'
+    }
+  ];
+
+  $scope.getPosts = function() {
+    return $scope.posts;
+  }
 })
 
-app.filter('moneyFilter', function() {
-  return function (str) {
-    var lastChar = str.slice(-1),
-        firstChar = str.slice(0, 1),
-        slicedPart;
-
-    console.log({str})
-
-    if (lastChar === "$") {
-      slicedPart = str.slice(0, str.length - 1);
-      return '$' + slicedPart;
-    } else if (firstChar === "$") {
-      return str;
-    } else {
-      return "$" + str;
+app.directive('post', function() {
+  return {
+    scope: false,
+    template: "<div ng-repeat='post in getPosts()'>{{post.name}}</div>",
+    link: function(scope, element, attrs) {
+      console.log('scope', scope);
     }
   }
 })
