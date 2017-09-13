@@ -1,4 +1,21 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngMockE2E']);
+
+app.run(function($httpBackend) {
+  var books = [
+    {
+      name: 'AngularJS'
+    }, {
+      name: 'EmberJS'
+    }
+  ];
+
+  $httpBackend.whenGET('http://localhost:3001/books').respond(200, books);
+  $httpBackend.whenPOST('http://localhost:3001/books').respond(function(method, url, data) {
+    var result = JSON.parse(data);
+    books.push(result);
+    return [200, result];
+  });
+})
 
 app.controller('mainCtrl', function($http, $scope) {
   $http.get('http://localhost:3001/books')
